@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertanyaan</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap"
+      rel="stylesheet">
+    <style>
+        /* Smooth Transition for Header */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes fadeInUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+      body
+      {
+        font-family: 'Luckiest Guy', sans-serif;
+        font-size: 36px;
+        text-align: center;
+        color: #58280c;  
+      }
+
+      .hero {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+      }
+
+      .hero video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+      }
+
+      .rules-container {
+        z-index: 1;
+      }
+      
+.choice-style-1 {
+  line-height: 8; 
+  margin-top: 25px;
+  cursor: pointer;
+  position: absolute;
+  .kanan{
+    margin-left: 150px;
+  }
+  .kiri{
+    margin-left: 0px;
+    margin-right: 650px;
+
+  }
+  }
+  .bawah
+  {
+    margin-bottom: 0%;
+    margin-top: 35px;
+  }
+
+      
+      .choice-style-2 {
+        line-height: 8; 
+  margin-top: 25px;
+  cursor: pointer;
+  position: absolute;
+  .kanan{
+    margin-left: 150px;
+  }
+  .kiri{
+    margin-left: 0px;
+    margin-right: 650px;
+
+  }
+  }
+  .bawah
+  {
+    margin-bottom: 0%;
+    margin-top: 35px;
+  }
+
+
+    
+      .choice-style-3{
+        line-height: 8; 
+  margin-top: 25px;
+  cursor: pointer;
+  position: absolute;
+  .kanan{
+    margin-left: 150px;
+  }
+  .kiri{
+    margin-left: 0px;
+    margin-right: 650px;
+
+  }
+  }
+  .bawah
+  {
+    margin-bottom: 0%;
+    margin-top: 35px;
+  }
+
+      
+      .choice-style-4{
+        line-height: 8; 
+  margin-top: 25px;
+  cursor: pointer;
+  position: absolute;
+  .kanan{
+    margin-left: 150px;
+  }
+  .kiri{
+    margin-left: 0px;
+    margin-right: 650px;
+
+  }
+  }
+  .bawah
+  {
+    margin-bottom: 0%;
+    margin-top: 35px;
+  }
+
+  .choice-style-5
+  {
+    line-height: 9;
+    margin-top: 160px;
+    .kanan{
+      margin-right: 320px;
+    }
+    .kiri{
+      margin-right: 420px;
+    }
+  }
+
+  .choice-style-1 img:hover,
+  .choice-style-2 img:hover,
+  .choice-style-3 img:hover,
+  .choice-style-4 img:hover,
+  .choice-style-5 img:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s;
+  }
+
+  
+  
+  #feedback {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+  }
+  #feedback.active {
+    opacity: 1;
+  }
+
+
+    
+  
+  
+  
+  
+</style>
+  </head>
+  <body>
+
+    <header class="hero">
+      <video id="backgroundVideo" autoplay muted>
+        <source src="https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/PertanyaanHafalanAngka.mp4" type="video/mp4">
+      </video>
+      <div class="container text-center">
+        <div class="rules-container">
+          <div id="question" class="mb-4 fs-4"
+          style=" text-shadow: 0px px 0 #FFEBA1;"></div>
+          <div id="choices" class="mb-4 fs-5" style="display: none;">
+            <div class="row">
+              <div class="col-6">
+                <img src="https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/27.png" class="img-fluid mb-2 kiri"
+                onclick="checkAnswer(0)">
+              </div>
+              <div class="col-6">
+                <img src="https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/28.png" class="img-fluid mb-2 kanan"
+                onclick="checkAnswer(1)">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <img src="https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/29.png" class="img-fluid mb-2 kiri bawah"
+                onclick="checkAnswer(2)">
+              </div>
+              <div class="col-6">
+                <img src="https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/30.png" class="img-fluid mb-2 kanan bawah"
+                  onclick="checkAnswer(3)">
+              </div>
+            </div>
+          </div>
+          <div id="feedback" class="mt-3 fs-5"></div>
+        </div>
+      </div>
+      <div class="position-absolute top-0 end-0 m-3 text-end"
+        style="color: rgb(195, 165, 130);">
+        <div> <span id="playerName">Guest</span></div>
+      </div>
+    </header>
+
+    <script>
+      const questions = [
+  {
+    choices: ["29846", "", "", ""],
+    answer: 0,
+    videoDisplay: "https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/1.mp4",
+    videoQuestion: "https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/7.mp4",
+    choicesStyle: "choice-style-1",
+    displayDuration: 10000// Waktu tampil video hafalan dalam milidetik
+  },
+  {
+    choices: ["", "", "386357", ""],
+    answer: 2,
+    videoDisplay: "https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/2.mp4",
+    videoQuestion: "https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/6.mp4",
+    choicesStyle: "choice-style-2",
+    displayDuration: 10000
+  },
+  {
+    choices: ["", "", "8", ""],
+    answer: 2,
+    videoDisplay: "https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/3.mp4",
+    videoQuestion: "https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/8.mp4",
+    choicesStyle: "choice-style-3",
+    displayDuration: 20000
+  },
+  {
+    choices: ["", "", "", "0"],
+    answer: 3,
+    videoDisplay: "https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/4.mp4",
+    videoQuestion: "https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/9.mp4",
+    choicesStyle: "choice-style-4",
+    displayDuration: 20000
+  },
+  {
+    choices: ["A", "", "", ""],
+    answer: 0,
+    videoDisplay: "https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/5.mp4",
+    videoQuestion: "https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/10.mp4",
+    choicesStyle: "choice-style-5",
+    displayDuration: 35000
+  }
+];
+
+
+      let currentQuestionIndex = 0;
+      let tokens = 0;
+
+      const questionDisplay = document.getElementById("question");
+      const choicesContainer = document.getElementById("choices");
+      const choiceButtons = choicesContainer.querySelectorAll("button");
+      const feedbackDisplay = document.getElementById("feedback");
+      const backgroundVideo = document.getElementById("backgroundVideo");
+
+      function showQuestion() {
+        feedbackDisplay.textContent = "";
+        choicesContainer.style.display = "none";
+      
+        const currentQuestion = questions[currentQuestionIndex];
+      
+        // Set video untuk sesi hafalan
+        backgroundVideo.src = currentQuestion.videoDisplay;
+      
+        // Tidak menampilkan pilihan di elemen HTML
+        questionDisplay.textContent = ""; // Kosongkan, hanya video yang tampil
+      
+        // Atur kelas CSS untuk choices
+        choicesContainer.className = `mb-4 fs-5 ${currentQuestion.choicesStyle}`;
+      
+        // Tunggu sesuai durasi displayDuration sebelum menampilkan sesi pertanyaan
+        setTimeout(() => {
+          backgroundVideo.src = currentQuestion.videoQuestion;
+          choicesContainer.style.display = "block";
+        }, currentQuestion.displayDuration); // Menggunakan durasi dari displayDuration
+      }
+      
+
+      
+function checkAnswer(selectedIndex) {
+  const currentQuestion = questions[currentQuestionIndex];
+  const correctAnswerValue = currentQuestion.choices[currentQuestion.answer];
+
+  feedbackDisplay.classList.add("active");
+  setTimeout(() => feedbackDisplay.classList.remove("active"), 20);
+
+  currentQuestionIndex++;
+  if (currentQuestionIndex < questions.length) {
+    setTimeout(showQuestion, 20);
+  } else {
+    setTimeout(() => {
+      const playerName = document.getElementById("playerName").textContent;
+      const nextUrl = `essai.html?name=${encodeURIComponent(playerName)}`;
+      window.location.href = nextUrl;
+    }, 2000);
+  }
+}
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const playerName = urlParams.get("name") || "NO NAME";
+      document.getElementById("playerName").textContent = playerName;
+
+      showQuestion();
+    </script>
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

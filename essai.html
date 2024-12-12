@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertanyaan Essai</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap"
+      rel="stylesheet">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        body {
+            font-family: 'Luckiest Guy', sans-serif;
+            font-size: 36px;
+            text-align: center;
+            color: #58280c;
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .rules-container {
+            z-index: 1;
+        }
+
+        textarea {
+            width: 100%;
+            height: 400px;
+            margin-top: 300px;
+            margin-left: 30px;
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 40px;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        .fade {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        #nextBtn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        #nextBtn:hover {
+            transform: scale(1.1);
+        }
+    </style>
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <header class="hero">
+      <video id="backgroundVideo" autoplay muted>
+        <source src="https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/1.mp4" type="video/mp4">
+      </video>
+      <div class="container text-center">
+        <div class="rules-container">
+          <div id="question" class="mb-4 fs-4" style="text-shadow: 0px px 0 #FFEBA1;">
+          </div>
+          <textarea id="answerInput" placeholder="Ketik jawaban Anda di sini..."></textarea>
+        </div>
+      </div>
+      <br>
+      <div class="position-absolute top-0 end-0 m-3 text-end" style="color: rgb(195, 165, 130);">
+        <div><span id="playerName">Guest</span></div>
+      </div>
+    <img id="nextBtn" src="https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/41.png" alt="Next Button">
+    </header>
+
+    <script>
+      const questions = [
+        {
+          video: "https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/11.mp4"
+        },
+        {
+          video: "https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/12.mp4"
+        },
+        {
+          video: "https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/13.mp4"
+        },
+        {
+          video: "https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/14.mp4"
+        },
+        {
+          video: "https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/15.mp4"
+        }
+      ];
+
+      let currentQuestionIndex = 0;
+
+      const questionDisplay = document.getElementById("question");
+      const answerInput = document.getElementById("answerInput");
+      const backgroundVideo = document.getElementById("backgroundVideo");
+
+      function showQuestion() {
+        const currentQuestion = questions[currentQuestionIndex];
+        questionDisplay.textContent = currentQuestion.text;
+        backgroundVideo.src = currentQuestion.video;
+        answerInput.value = "";
+
+        // Add fade class to textarea
+        answerInput.classList.add("fade");
+
+        // Remove fade class after animation ends
+        setTimeout(() => {
+          answerInput.classList.remove("fade");
+        }, 1000); // Match the duration of the fade animation
+      }
+
+      document.getElementById("nextBtn").addEventListener("click", () => {
+        const answer = answerInput.value.trim();
+        if (answer === "") {
+          alert("Jawaban tidak boleh kosong!");
+          return;
+        }
+
+        console.log(`Jawaban untuk pertanyaan '${questions[currentQuestionIndex].text}': ${answer}`);
+
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < questions.length) {
+          showQuestion();
+        } else {
+          window.location.href = `RulesDenah.html?name=${encodeURIComponent(playerName)}`;
+        }
+      });
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const playerName = urlParams.get("name") || "NO NAME";
+      document.getElementById("playerName").textContent = playerName;
+
+      showQuestion();
+    </script>
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

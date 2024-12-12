@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Denah</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Press+Start+2P&family=Luckiest+Guy&family=Anton&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<style>
+  #denah {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+  }
+  #denah img {
+    max-width: 90%;
+    height: auto;
+  }
+  #nextButton {
+    margin-left: 20px;
+  }
+</style>
+</head>
+<body>
+<header class="hero">
+  <video autoplay muted>
+    <source src="https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/alfi.mp4" type="video/mp4">
+  </video>
+  <div class="container mt-5">
+    
+    <div id="timer" class="hero-subheading" style="color: aliceblue;">Waktu: 180s</div>
+    
+    <!-- Denah yang akan muncul saat fase hafalan -->
+    <div id="denah" class="d-flex flex-column align-items-center">
+      <div class="container next">
+        <img src="https://github.com/Altamish27/CognitiveMemory/raw/bfda0bcba10852f6233f35def5fa08ec4790ee7c/41.png" alt="Next" onclick="goToQuestions()">
+    </div>
+   
+      <button id="nextButton" class="btn btn-lg text-uppercase btn-start" style="margin: 50px;"></button>
+    </div>
+  </div>
+
+  <div class="position-absolute top-0 end-0 m-3 text-end"
+  style="color: aliceblue;">
+
+</div>
+</header>
+
+<script>
+  const tokenss = localStorage.getItem("tokens") || 0;
+  const timerDisplay = document.getElementById("timer");
+  const denah = document.getElementById("denah");
+  const gridItems = denah.querySelectorAll("div");
+
+  let timeLeft = 180;  
+  let tokens = 3;
+  let randomLocation = "";
+
+  nextButton.addEventListener("click", () => {
+    window.location.href = "denahKosong.html";
+  });
+
+  function startTimer() {
+    const timer = setInterval(() => {
+      if (timeLeft > 0) {
+        timeLeft--;
+        timerDisplay.textContent = `Waktu: ${timeLeft}s`;
+      } else {
+        clearInterval(timer);
+        alert("Waktu habis! Lanjut ke fase menebak.");
+        window.location.href = "denahKosong.html";
+        startTebakTirai();
+      }
+    }, 1000);
+  }
+  window.onload = function() {
+    startTimer();
+  };
+
+  // Mendapatkan nama dan token dari URL
+const urlParams = new URLSearchParams(window.location.search);
+const playerName = urlParams.get("name") || "Guest"; // Default ke Guest jika tidak ada parameter
+const tokensFromPreviousPage = urlParams.get("tokens") || tokenss; // Ambil dari URL atau localStorage jika tersedia
+
+// Menampilkan nama dan token di halaman
+document.getElementById("playerName").textContent = playerName;
+document.getElementById("tokenCount").textContent = tokensFromPreviousPage;
+
+</script>
+
+<script>
+  function goToQuestions() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const playerName = urlParams.get("name");
+    // Arahkan ke halaman pertanyaan.html dengan parameter name
+    window.location.href = `terimakasih.html?name=${playerName}`;
+  }
+</script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
